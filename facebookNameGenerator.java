@@ -31,29 +31,91 @@ import java.util.Scanner;
 public class FacebookNameGenerator {
 
     /**
-     * @param args the command line arguments
+     * @param args
      */
+	
     public static void main(String[] args) {
         
+        /**
+         * User inputs name, date of birth, birth city, etc.
+         * Then the OOP spits out a few names via substring and
+         * charAt commands drawn from arrays. Will expand in due time.
+         */
+        
         Scanner input = new Scanner(System.in);
-        System.out.print("Welcome to the Facebook Name Generator. Let's start with your first name: ");
+        
+        System.out.print("We'll need some information. Are you male or female? ");
+        
+        String gender = input.nextLine();
+        
+            if(gender.toLowerCase() != "female" || gender.toLowerCase() != "male") {
+            
+                System.out.print("Please type \"Male\" or \"Female\": ");
+                gender = input.nextLine();
+            
+            }
+        
+        System.out.print("Enter your first name: ");
+        
         String firstName = input.nextLine();
+        
+            if(firstName.length() == 1) {
+                
+                System.out.print("Your first name must be at least two characters long: ");
+                firstName = input.nextLine();
+                
+            }
+        
         System.out.print("Your middle initial: ");
+        
         String middleInitial = input.nextLine();
-        System.out.print("And now your last name: ");
+        
+        System.out.print("Now enter your last name: ");
+        
         String lastName = input.nextLine();
+        
+            if(lastName.length() <= 3) {
+                
+                System.out.print("Your last name must be at least three characters long: ");
+                lastName = input.nextLine();
+                
+            }
+        
         System.out.print("What's your mother's last name? ");
+        
         String yoMamma = input.nextLine();
+        
+            if(yoMamma.length() <= 3) {
+                
+                System.out.print("Your mother's maiden name must be at least three characters in length: ");
+                yoMamma = input.nextLine();
+                
+                
+            }
+        
         System.out.print("What city were you born in? ");
+        
         String homeTown = input.nextLine();
+        
         System.out.print("What month were you born in? " );
+        
         String birthMonth = input.nextLine();
+        
         String starWarsName = starWars(firstName, lastName, homeTown, yoMamma);
+        
         String stripperName = stripperName(firstName, middleInitial, lastName );
+        
         String vampireName = vampireName(firstName, birthMonth);
+        
+        String apocalypseName = apocalypseName(firstName, birthMonth, gender);
+        
         System.out.println("Your Star Wars name is:\n\n" + starWarsName + "\n");
+        
         System.out.println("Your stripper name is:\n\n" + stripperName + "\n");
+        
         System.out.println("Your vampire name is:\n\n" + vampireName + "\n");
+        
+        System.out.println("Your apocalypse survivor name is:\n\n" + apocalypseName + "\n");
         
     }
     
@@ -63,6 +125,7 @@ public class FacebookNameGenerator {
 
         starWarsFirst = lastName.substring(0, 3) + firstName.toLowerCase().substring(0, 2);
         starWarsLast = yoMamma.substring(0, 2) + homeTown.toLowerCase().substring(0, 3);
+        
         result = starWarsFirst + " " + starWarsLast;
         
         return result;
@@ -93,10 +156,10 @@ public class FacebookNameGenerator {
         String result;
         
         int firstInitial = firstName.toUpperCase().charAt(0);
+        String birthMonthString = birthMonth;
         
-		String birthMonthString = birthMonth;
+        String[] firstNameArray = {"Savage", "Vampire", "Cruel", "Demon", "Lethal", "Rogue", "Brutal", "Sinister", "Malevolent", "Venomous", "Relentless", "Deadly", "Vicious", "Dark", "Ruthless", "Sadistic", "Ferocious", "Bloodthirsty", "Merciless", "Dragon", "Cold-blooded", "Witch", "Fierce", "Mortal", "Feral", "Hybrid" };
         
-        String[] firstNameArray = {"Savage", "Vampire", "Cruel", "Demon", "Lethal", "Rogue", "Brutal", "Sinister", "Malevolent", "Venomous", "Relentless", "Deadly", "Vicious", "Dark", "Ruthless", "Sadistic", "Ferocious", "Bloodthirsty", "Merciless", "Dragon", "Cold-blooded", "Witch", "Fierce", "Mortal", "Feral", "Hybrid" }; 
         String firstVampName = firstNameArray[firstInitial - 65];
         
         switch (birthMonth) {
@@ -134,5 +197,31 @@ public class FacebookNameGenerator {
             return result;
             
         }
+    
+    public static String apocalypseName(String gender, String firstName, String lastName) {
+        
+        int firstInitial = firstName.toUpperCase().charAt(0);
+        int maleOrFemale = gender.toUpperCase().charAt(0);
+        int lastInitial = lastName.toUpperCase().charAt(0);
+        String result;
+        
+        String[] maleArray = {"Ash", "Brandish", "Captain", "Duke", "Ezekiel", "Flynn", "Grint", "Hardigan", "Ivan", "Jag", "Knife", "Langur", "Max", "Noah", "Otto", "Packer", "Quigley", "Ricket", "Solomon", "Tyrone", "Utah", "Vick", "Wolfgang", "Xander", "York", "Zed"};
+        String[] femaleArray = {"Artemis", "Bolt", "Crane", "Digger", "Ember", "Falcon", "Grey", "Hoppy", "Iz", "Jezebel", "Krist", "Loris", "Minnow", "North", "Octavia", "Prudence", "Quinn", "Red", "Steely", "Terra", "Unit", "Via", "Weedy", "Xil", "Yoll", "Zephyr"};
+        String[] lastNameArray = {"Albatross", "Book", "Crow", "Drake", "Engine", "Flash", "Glass", "Hammer", "Ice", "Jackboot", "Ka", "Longbow", "Mason", "Nethers", "Odin", "Pathfinder", "Quiver", "Ranger", "Savage", "Thorn", "Unger", "Vigilante", "Warheart", "Xeven", "Yen", "Zimmer"};
+        
+        if( firstInitial == 83 ) {
+            
+            result = femaleArray[firstInitial - 65] + " " + lastNameArray[lastInitial - 65];
+            
+        }
+        
+        else {
+            
+            result = maleArray[firstInitial - 65] + " " + lastNameArray[lastInitial - 65];
+        }
+        
+        return result;
+        
+    }
         
 }
