@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="facebookNameGeneratorGUI.jnlp">
+  <information>
+    <title>facebookNameGeneratorGUI</title>
+    <vendor>Captain Kirk Cameron</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="facebookNameGeneratorGUI.jar" size="10583" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="facebookNameGeneratorGUI" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="facebooknamegeneratorgui.FacebookNameGeneratorGUI"  name="facebookNameGeneratorGUI" />
+  <update check="always"/>
+</jnlp>
