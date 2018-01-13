@@ -34,7 +34,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Ryan Friesen
+ * @author Captain Kirk Cameron
  */
 public class FacebookNameGeneratorGUI extends Application {
 
@@ -45,10 +45,17 @@ public class FacebookNameGeneratorGUI extends Application {
         TextField tfYoMamma = new TextField();
         TextField tfBirthPlace = new TextField();
         TextField tfBirthMonth = new TextField();
+        TextField tfBirthDay = new TextField();
         TextField tfStarWars = new TextField();
         TextField tfStripper = new TextField();
         TextField tfVampire = new TextField();
         TextField tfApocalypse = new TextField();
+        TextField tfMedieval = new TextField();
+        TextField tfHeavyMetal = new TextField();
+        TextField tfIncremental = new TextField();
+        TextField tfIncrementalConsonant = new TextField();
+        TextField tfDecremental = new TextField();
+        TextField tfDecrementalConsonant = new TextField();
         Button btCalculate = new Button("Enter");
 
         /**
@@ -79,16 +86,29 @@ public class FacebookNameGeneratorGUI extends Application {
          gridPane.add(tfBirthPlace, 1, 5);
          gridPane.add(new Label("What Month You Were Born In:"), 0, 6);
          gridPane.add(tfBirthMonth, 1, 6);
-         gridPane.add(btCalculate, 0, 7);
-         gridPane.add(new Label("Your Star Wars Name is:"), 0, 8);
-         gridPane.add(tfStarWars, 1, 8);
-         gridPane.add(new Label("Your Stripper Name is:"), 0, 9);
-         gridPane.add(tfStripper, 1, 9);
-         gridPane.add(new Label("Your Vampire Name is:"), 0, 10);
-         gridPane.add(tfVampire, 1, 10);
-         gridPane.add(new Label("Your Apocalypse Name is:"), 0, 11);
-         gridPane.add(tfApocalypse, 1, 11);
-         
+         gridPane.add(new Label("The day of month you were born:"), 0, 7);
+         gridPane.add(tfBirthDay, 1, 7);
+         gridPane.add(btCalculate, 0, 8);
+         gridPane.add(new Label("Your Star Wars Name is:"), 0, 9);
+         gridPane.add(tfStarWars, 1, 9);
+         gridPane.add(new Label("Your Stripper Name is:"), 0, 10);
+         gridPane.add(tfStripper, 1, 10);
+         gridPane.add(new Label("Your Vampire Name is:"), 0, 11);
+         gridPane.add(tfVampire, 1, 11);
+         gridPane.add(new Label("Your Apocalypse Name is:"), 0, 12);
+         gridPane.add(tfApocalypse, 1, 12);
+         gridPane.add(new Label("Your Medieval Name is:"), 0, 13);
+         gridPane.add(tfMedieval, 1, 13);
+         gridPane.add(new Label("Your Heavy Metal Name is:"), 0, 14);
+         gridPane.add(tfHeavyMetal, 1, 14);
+         gridPane.add(new Label("Your Vowel-incremented Name is:"), 0, 15);
+         gridPane.add(tfIncremental, 1, 15);
+         gridPane.add(new Label("Your Consonant-incremented Name is:"), 0, 16);
+         gridPane.add(tfIncrementalConsonant, 1, 16);
+         gridPane.add(new Label("Your Vowel-decremented Name is:"), 0, 17);
+         gridPane.add(tfDecremental, 1, 17);
+         gridPane.add(new Label("Your Consonant-decremented Name is:"), 0, 18);
+         gridPane.add(tfDecrementalConsonant, 1, 18);
          gridPane.setAlignment(Pos.CENTER);
          tfGender.setAlignment(Pos.BOTTOM_RIGHT);
          tfFirstName.setAlignment(Pos.BOTTOM_RIGHT);
@@ -97,19 +117,32 @@ public class FacebookNameGeneratorGUI extends Application {
          tfYoMamma.setAlignment(Pos.BOTTOM_RIGHT);
          tfBirthPlace.setAlignment(Pos.BOTTOM_RIGHT);
          tfBirthMonth.setAlignment(Pos.BOTTOM_RIGHT);
+         tfBirthDay.setAlignment(Pos.BOTTOM_RIGHT);
          btCalculate.setAlignment(Pos.CENTER);
          tfStarWars.setAlignment(Pos.BOTTOM_RIGHT);
          tfStripper.setAlignment(Pos.BOTTOM_RIGHT);
          tfVampire.setAlignment(Pos.BOTTOM_RIGHT);
          tfApocalypse.setAlignment(Pos.BOTTOM_RIGHT);
+         tfMedieval.setAlignment(Pos.BOTTOM_RIGHT);
+         tfHeavyMetal.setAlignment(Pos.BOTTOM_RIGHT);
+         tfIncremental.setAlignment(Pos.BOTTOM_RIGHT);
+         tfIncrementalConsonant.setAlignment(Pos.BOTTOM_RIGHT);
+         tfDecremental.setAlignment(Pos.BOTTOM_RIGHT);
+         tfDecrementalConsonant.setAlignment(Pos.BOTTOM_RIGHT);
          tfStarWars.setEditable(false);
          tfStripper.setEditable(false);
          tfVampire.setEditable(false);
          tfApocalypse.setEditable(false);
+         tfMedieval.setEditable(false);
+         tfHeavyMetal.setEditable(false);
+         tfIncremental.setEditable(false);
+         tfIncrementalConsonant.setEditable(false);
+         tfDecremental.setEditable(false);
+         tfDecrementalConsonant.setEditable(false);
          
          btCalculate.setOnAction(e -> NameHandler());
          
-         Scene scene = new Scene(gridPane, 400, 450);
+         Scene scene = new Scene(gridPane, 400, 650);
          primaryStage.setTitle("Facebook Name Generator");
          primaryStage.setScene(scene);
          primaryStage.show();
@@ -125,13 +158,25 @@ public class FacebookNameGeneratorGUI extends Application {
             String yoMammaString = (tfYoMamma.getText());
             String birthMonthString = (tfBirthMonth.getText());
             String middleInitialString = (tfMiddleInitial.getText());
+            String heavyMetalString = (tfHeavyMetal.getText());
+            String incrementalString = (tfIncremental.getText());
+            String incrementalConsonantString = (tfIncrementalConsonant.getText());
+            String decrementalString = (tfDecremental.getText());
+            String decrementalConsonantString = (tfDecrementalConsonant.getText());
+            int birthDay = Integer.parseInt(tfBirthDay.getText());
             
-            NameOutput nameOutput = new NameOutput(firstNameString, lastNameString, birthTownString, yoMammaString, genderString, middleInitialString, birthMonthString);
+            NameOutput nameOutput = new NameOutput(firstNameString, lastNameString, birthTownString, yoMammaString, genderString, middleInitialString, birthMonthString, heavyMetalString, birthDay, incrementalString, incrementalConsonantString, decrementalString, decrementalConsonantString);
             
             tfStarWars.setText(nameOutput.starWars());
             tfStripper.setText(nameOutput.stripperName());
             tfVampire.setText(nameOutput.vampireName());
             tfApocalypse.setText(nameOutput.apocalypseName());
+            tfMedieval.setText(nameOutput.medievalName());
+            tfHeavyMetal.setText(nameOutput.heavyMetalName());
+            tfIncremental.setText(nameOutput.incrementalize() + " " + nameOutput.incrementalizeLast());
+            tfIncrementalConsonant.setText(nameOutput.consonantIncrement() + " " + nameOutput.consonantIncrementLast());
+            tfDecremental.setText(nameOutput.decrementalize() + " " + nameOutput.decrementalizeLast());
+            tfDecrementalConsonant.setText(nameOutput.consonantDecrement() + " " + nameOutput.consonantDecrementLast());
             
             }
 
