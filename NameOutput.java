@@ -807,6 +807,9 @@ public class NameOutput {
                 case 89:
                     letter = 89;
                     break;
+                case 90:
+                    letter = 66;
+                    break;
                 case 96:
                     letter = 98;
                     break;
@@ -844,7 +847,7 @@ public class NameOutput {
                     letter = 121;
                     break;
                 case 122:
-                    letter = 97;
+                    letter = 98;
                     break;
                 default:
                     letter++;
